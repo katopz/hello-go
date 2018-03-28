@@ -15,5 +15,5 @@ services:
     volumes:
       - ./.env:/app/.env
       - ./:/app
-    working_dir: /app
-    command: glide update && fresh -c runner.conf main.go
+    # working_dir: /app
+    # command: glide update && fresh -c runner.conf main.go

@@ -6,14 +6,12 @@ Hello Golang! Here I come!
 
 ## Setup
 ```shell
-docker build -f ./builder/Dockerfile -t rabbotio/go-builder .
-docker build -f ./Dockerfile -t rabbotio/hello-go .
-docker-compose up
+. build
 ```
 
 ## Run
 ```shell
-. start
+. up
 ```
 
 ## TODO
