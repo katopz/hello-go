@@ -1,10 +1,11 @@
 # build stage
-FROM golang:alpine AS builder
-ADD . /src
-RUN cd /src && go build -o goapp
+FROM rabbotio/hello-go AS builder
+
+# ADD . /app
+# RUN cd /app && go build -o goapp
 
 # final stage
 FROM alpine
 WORKDIR /app
-COPY --from=builder /src/goapp /app/
+COPY --from=builder /app/goapp /app/
 ENTRYPOINT ./goapp

@@ -12,7 +12,8 @@ RUN mkdir -p $$GOPATH/bin && \
 # define work directory
 ADD . /app
 WORKDIR /app
-RUN ls /go/src/github.com
+
+RUN go build -o goapp
 
 VOLUME ["/app"]
 

@@ -46,10 +46,34 @@ func logout(w http.ResponseWriter, r *http.Request) {
 	session.Save(r, w)
 }
 
+func healthz(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+}
+
+func home(w http.ResponseWriter, r *http.Request) {
+	session, _ := store.Get(r, "cookie-name")
+
+	// Check if user is authenticated
+	if auth, ok := session.Values["authenticated"].(bool); !ok || !auth {
+		// Set user as authenticated
+		session.Values["authenticated"] = true
+		session.Save(r, w)
+
+		fmt.Fprintln(w, session.Values["authenticated"])
+		return
+	}
+
+	// Print secret message
+	fmt.Fprintln(w, "Logged in")
+}
+
 func main() {
+	fmt.Println("Start! v1.5")
 	http.HandleFunc("/secret", secret)
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/logout", logout)
+	http.HandleFunc("/healthz", healthz)
+	http.HandleFunc("/", home)
 
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":80", nil)
 }

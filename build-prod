@@ -1,0 +1,2 @@
+docker build -f prod.Dockerfile -t foo .
+docker tag foo gcr.io/jamplay-prod/foo:latest

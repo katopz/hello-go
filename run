@@ -1,2 +1,3 @@
-docker rm hello-go
-docker run -it -p 8080:8080 --volume=$(PWD):/app --name=hello-go rabbotio/hello-go
+docker rm foo
+# docker run -it -p 80:80 --volume=$(PWD):/app --name=foo foo
+docker run -it -p 80:80 --name=foo foo
