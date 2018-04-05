@@ -12,6 +12,7 @@ RUN mkdir -p $$GOPATH/bin && \
 
 # define work directory
 WORKDIR /app
+COPY . .
 
 # serve the app
 CMD glide update && fresh -c runner.conf main.go

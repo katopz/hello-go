@@ -56,10 +56,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 	// Check if user is authenticated
 	if auth, ok := session.Values["authenticated"].(bool); !ok || !auth {
 		// Set user as authenticated
-		session.Values["authenticated"] = true
-		session.Save(r, w)
-
-		fmt.Fprintln(w, session.Values["authenticated"])
+		fmt.Fprintln(w, "Not logged in")
 		return
 	}
 
@@ -75,5 +72,5 @@ func main() {
 	http.HandleFunc("/healthz", healthz)
 	http.HandleFunc("/", home)
 
-	http.ListenAndServe(":80", nil)
+	http.ListenAndServe(":8080", nil)
 }
